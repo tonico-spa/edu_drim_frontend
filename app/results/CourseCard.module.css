@@ -1,0 +1,60 @@
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: #fff;
+}
+
+.match {
+  display: inline-block;
+  background: #e6f7f0;
+  color: #33AA74;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  background: #fde8f4;
+  color: #D73186;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.btn {
+  margin-top: auto;
+  padding: 0.65rem 1rem;
+  background: #D73186;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn:hover { background: #b8206e; }

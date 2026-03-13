@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.bar {
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+.fill {
+  height: 100%;
+  background: #D73186;
+  border-radius: 999px;
+  transition: width 0.3s;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: #999;
+}

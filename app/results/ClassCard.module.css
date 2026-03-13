@@ -1,0 +1,99 @@
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  border-color: #D73186;
+  box-shadow: 0 4px 16px rgba(215, 49, 134, 0.08);
+}
+
+.top {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.match {
+  display: inline-block;
+  background: #e6f7f0;
+  color: #33AA74;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.resource {
+  display: inline-block;
+  background: #e8f3fb;
+  color: #4F98D3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  background: #fde8f4;
+  color: #D73186;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.btn {
+  margin-top: auto;
+  padding: 0.65rem 1rem;
+  background: #D73186;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: #b8206e; }
+
+.added {
+  background: #e6f7f0;
+  color: #33AA74;
+  border: 2px solid #33AA74;
+}
+
+.added:hover { background: #d0f4e6; }

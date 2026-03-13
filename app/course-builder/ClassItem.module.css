@@ -1,0 +1,46 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 0.5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  border: 2px solid #D73186;
+  background: #fff;
+  color: #D73186;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.added {
+  background: #D73186;
+  color: #fff;
+}

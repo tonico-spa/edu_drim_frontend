@@ -1,0 +1,60 @@
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.item {
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+
+.question {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.answer {
+  color: #D73186;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.back {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #D73186;
+  border-radius: 8px;
+  background: #fff;
+  color: #D73186;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #D73186;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit:hover { background: #b8206e; }

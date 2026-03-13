@@ -1,0 +1,38 @@
+.catalog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.searchWrapper {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.search {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.search:focus {
+  outline: none;
+  border-color: #D73186;
+}
+
+.list {
+  list-style: none;
+  flex: 1;
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+}

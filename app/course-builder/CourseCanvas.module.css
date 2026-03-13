@@ -1,0 +1,68 @@
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  border: 2px dashed #e5e5e5;
+  border-radius: 12px;
+}
+
+.emptyText {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.order {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #D73186;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.title {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.move, .remove {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.move:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.remove {
+  color: #ef4444;
+  border-color: #fecaca;
+}

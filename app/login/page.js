@@ -20,7 +20,7 @@ export default function LoginPage() {
       const data = await login(email, password)
       localStorage.setItem('token', data.access_token)
       window.dispatchEvent(new Event('auth-change'))
-      router.push('/quiz')
+      router.push('/dashboard')
     } catch {
       setError('Email o contraseña incorrectos.')
     } finally {

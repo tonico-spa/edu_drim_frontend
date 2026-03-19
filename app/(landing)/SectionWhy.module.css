@@ -1,33 +1,57 @@
 .section {
-  min-height: 100vh;
+  display: flex;
+  background: #5F5882;
+  margin: 3rem;
+  border-radius: 10px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.imageCol {
+  position: relative;
+  border-radius: 10px;
+  margin: 2rem;
+}
+
+.image {
+  border-radius: 10px;
+  height: auto;
+  object-fit: cover;
+}
+
+
+.textCol {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
-  background: #fff;
+  padding: 4rem 3rem;
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
+  color: white;
 }
 
 .testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  max-width: 860px;
-  width: 100%;
   margin-bottom: 3rem;
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #e5e5e5;
   border-radius: 12px;
-  padding: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: white;
+  text-align: justify;
+
 }
 
 .quote {
@@ -40,4 +64,18 @@
 .author {
   font-size: 0.9rem;
   color: #888;
+}
+
+@media (max-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .imageCol {
+    min-height: 300px;
+  }
+
+  .textCol {
+    padding: 3rem 2rem;
+  }
 }

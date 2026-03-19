@@ -1,8 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { register } from '../../lib/api'
+import { register, getUserTypes } from '../../lib/api'
 import styles from './register.module.css'
 
 export default function RegisterPage() {
@@ -10,18 +10,27 @@ export default function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [userTypeId, setUserTypeId] = useState('')
+  const [userTypes, setUserTypes] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    getUserTypes().then((types) => {
+      setUserTypes(types)
+      if (types.length > 0) setUserTypeId(types[0].id)
+    }).catch(() => {})
+  }, [])
 
   async function handleSubmit(e) {
     e.preventDefault()
     setError(null)
     setLoading(true)
     try {
-      const data = await register(name, email, password)
+      const data = await register(name, email, password, userTypeId)
       localStorage.setItem('token', data.access_token)
       window.dispatchEvent(new Event('auth-change'))
-      router.push('/quiz')
+      router.push('/dashboard')
     } catch {
       setError('No se pudo crear la cuenta. El email puede ya estar en uso.')
     } finally {
@@ -66,6 +75,18 @@ export default function RegisterPage() {
             minLength={8}
             required
           />
+
+          <label className={styles.label}>Tipo de usuario</label>
+          <select
+            className={styles.input}
+            value={userTypeId}
+            onChange={(e) => setUserTypeId(e.target.value)}
+            required
+          >
+            {userTypes.map((ut) => (
+              <option key={ut.id} value={ut.id}>{ut.label}</option>
+            ))}
+          </select>
 
           {error && <p className={styles.error}>{error}</p>}
 

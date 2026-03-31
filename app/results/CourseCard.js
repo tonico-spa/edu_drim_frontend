@@ -1,6 +1,12 @@
 import { useRouter } from 'next/navigation'
 import styles from './CourseCard.module.css'
 
+function toPlainText(value) {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  return value.map((b) => b.children?.map((c) => c.text).join('') ?? '').join(' ')
+}
+
 export default function CourseCard({ course, suggested }) {
   const router = useRouter()
   return (
@@ -9,7 +15,7 @@ export default function CourseCard({ course, suggested }) {
         <span className={styles.match}>{course.match_pct}% match</span>
       )}
       <h3 className={styles.title}>{course.title}</h3>
-      <p className={styles.desc}>{course.description}</p>
+      <p className={styles.desc}>{toPlainText(course.description)}</p>
       <div className={styles.tags}>
         {(course.tags || []).map((t) => (
           <span key={t.name} className={styles.tag}>{t.label}</span>

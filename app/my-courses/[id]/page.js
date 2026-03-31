@@ -4,6 +4,13 @@ import { useRouter, useParams } from 'next/navigation'
 import { getTeacherCourse } from '../../../lib/api'
 import styles from './course-detail.module.css'
 
+function toPlainText(value) {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  if (!Array.isArray(value)) return ''
+  return value.map((b) => b.children?.map((c) => c.text).join('') ?? '').join(' ')
+}
+
 const RESOURCE_LABELS = {
   sin_tecnologia:      'Sin tecnología',
   computador:          'Computador',
@@ -62,7 +69,7 @@ export default function CourseDetailPage() {
               <div className={styles.cardBody}>
                 <h2 className={styles.classTitle}>{cls.title}</h2>
                 {cls.description && (
-                  <p className={styles.classDesc}>{cls.description}</p>
+                  <p className={styles.classDesc}>{toPlainText(cls.description)}</p>
                 )}
                 <div className={styles.badges}>
                   {cls.duration_minutes && (

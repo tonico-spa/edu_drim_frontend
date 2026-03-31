@@ -3,6 +3,12 @@ import { useRouter } from 'next/navigation'
 import useCourseBuilderStore from '../../store/courseBuilderStore'
 import styles from './ClassCard.module.css'
 
+function toPlainText(value) {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  return value.map((b) => b.children?.map((c) => c.text).join('') ?? '').join(' ')
+}
+
 const RESOURCE_LABELS = {
   sin_tecnologia:      'Sin tecnología',
   computador:          'Computador',
@@ -35,7 +41,7 @@ export default function ClassCard({ class_, suggested }) {
       </div>
 
       <h3 className={styles.title}>{class_.title}</h3>
-      <p className={styles.desc}>{class_.description}</p>
+      <p className={styles.desc}>{toPlainText(class_.description)}</p>
 
       <div className={styles.meta}>
         {class_.duration_minutes && <span>{class_.duration_minutes} min</span>}

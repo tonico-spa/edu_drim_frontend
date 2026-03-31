@@ -10,11 +10,15 @@ import { getQuizQuestions } from '../../lib/api'
 
 export default function QuizPage() {
   const router = useRouter()
-  const { questions, currentIndex, answers, phase, setQuestions, setPhase } = useQuizStore()
+  const { questions, currentIndex, answers, phase, setQuestions, setCurrentIndex, setPhase } = useQuizStore()
 
   useEffect(() => {
-    getQuizQuestions().then(setQuestions)
-  }, [setQuestions])
+    getQuizQuestions().then((qs) => {
+      setQuestions(qs)
+      setCurrentIndex(0)
+      setPhase('quiz')
+    })
+  }, [])
 
   const isLast = currentIndex === questions.length - 1
 
@@ -46,7 +50,7 @@ export default function QuizPage() {
         </>
       )}
       {phase === 'summary' && (
-        <QuizSummary questions={questions} answers={answers} onSubmit={handleSubmit} onBack={() => setPhase('quiz')} />
+        <QuizSummary questions={questions} answers={answers} onSubmit={handleSubmit} onBack={() => { setCurrentIndex(0); setPhase('quiz') }} />
       )}
     </div>
   )

@@ -1,0 +1,61 @@
+.folders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.folder {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.folderHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: #fafafa;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.folderHeader:hover {
+  background: #fde8f4;
+}
+
+.folderIcon {
+  font-size: 0.9rem;
+  color: #D73186;
+  width: 1rem;
+  flex-shrink: 0;
+}
+
+.folderLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  flex: 1;
+}
+
+.folderCount {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: #D73186;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.folderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-top: 1px solid #e5e5e5;
+}

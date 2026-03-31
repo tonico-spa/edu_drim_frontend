@@ -9,6 +9,7 @@ const useQuizStore = create((set, get) => ({
   phase: 'quiz',      // 'quiz' | 'summary'
 
   setQuestions: (questions) => set({ questions }),
+  setCurrentIndex: (index) => set({ currentIndex: index }),
   setPhase: (phase) => set({ phase }),
   setMatchedTags: (tags) => set({ matchedTags: tags }),
   setResourceType: (resource) => set({ resourceType: resource }),

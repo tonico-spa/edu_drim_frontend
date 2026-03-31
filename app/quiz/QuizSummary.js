@@ -3,7 +3,7 @@ import styles from './QuizSummary.module.css'
 export default function QuizSummary({ questions, answers, onSubmit, onBack }) {
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.title}>Review your answers</h2>
+      <h2 className={styles.title}>Revisa tus respuestas</h2>
       <ul className={styles.list}>
         {questions.map((q) => {
           const selected = q.options.find((o) => o.id === answers[q.id])
@@ -16,8 +16,8 @@ export default function QuizSummary({ questions, answers, onSubmit, onBack }) {
         })}
       </ul>
       <div className={styles.actions}>
-        <button className={styles.back} onClick={onBack}>Edit answers</button>
-        <button className={styles.submit} onClick={onSubmit}>See my courses</button>
+        <button className={styles.back} onClick={onBack}>Editar respuestas</button>
+        <button className={styles.submit} onClick={onSubmit}>Ver mis cursos</button>
       </div>
     </div>
   )

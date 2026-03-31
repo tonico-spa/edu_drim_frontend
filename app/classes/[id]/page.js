@@ -64,8 +64,10 @@ export default function ClassDetailPage() {
 
         <h1 className={styles.title}>{class_.title}</h1>
 
-        {class_.description && (
-          <p className={styles.description}>{class_.description}</p>
+        {class_.description?.length > 0 && (
+          <div className={`${styles.description} ${styles.prose}`}>
+            <PortableText value={class_.description} />
+          </div>
         )}
 
         <div className={styles.tags}>
@@ -75,11 +77,69 @@ export default function ClassDetailPage() {
         </div>
       </div>
 
+      {(class_.class_name || class_.unidad || class_.semestre || class_.duration || class_.type || class_.recursos) && (
+        <div className={styles.infoGrid}>
+          {class_.class_name && <div className={styles.infoItem}><span className={styles.infoLabel}>Nombre</span><span className={styles.infoValue}>{class_.class_name}</span></div>}
+          {class_.unidad && <div className={styles.infoItem}><span className={styles.infoLabel}>Unidad</span><span className={styles.infoValue}>{class_.unidad}</span></div>}
+          {class_.semestre && <div className={styles.infoItem}><span className={styles.infoLabel}>Semestre</span><span className={styles.infoValue}>{class_.semestre}</span></div>}
+          {class_.duration && <div className={styles.infoItem}><span className={styles.infoLabel}>Duración</span><span className={styles.infoValue}>{class_.duration}</span></div>}
+          {class_.type && <div className={styles.infoItem}><span className={styles.infoLabel}>Tipo</span><span className={styles.infoValue}>{class_.type}</span></div>}
+          {class_.recursos && <div className={styles.infoItem}><span className={styles.infoLabel}>Recursos</span><span className={styles.infoValue}>{class_.recursos}</span></div>}
+        </div>
+      )}
+
+      {class_.video_link && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Video</h2>
+          <a href={class_.video_link} target="_blank" rel="noopener noreferrer" className={styles.videoLink}>
+            {class_.video_link}
+          </a>
+        </div>
+      )}
+
       {class_.materials?.length > 0 && (
         <div className={styles.materials}>
           <h2 className={styles.materialsTitle}>Contenido de la clase</h2>
           <div className={styles.prose}>
             <PortableText value={class_.materials} />
+          </div>
+        </div>
+      )}
+
+      {class_.images?.length > 0 && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Imágenes</h2>
+          <div className={styles.imageGrid}>
+            {class_.images.map((img, i) => (
+              <a key={i} href={img.url} target="_blank" rel="noopener noreferrer" className={styles.imageCard}>
+                <img src={img.url} alt={`Imagen ${i + 1}`} className={styles.image} />
+                <span className={styles.downloadLabel}>Descargar</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {class_.files?.length > 0 && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Archivos</h2>
+          <ul className={styles.fileList}>
+            {class_.files.map((f, i) => (
+              <li key={i}>
+                <a href={f.url} target="_blank" rel="noopener noreferrer" className={styles.fileLink} download>
+                  ↓ {f.name || `Archivo ${i + 1}`}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {class_.closing?.length > 0 && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Cierre</h2>
+          <div className={`${styles.closing} ${styles.prose}`}>
+            <PortableText value={class_.closing} />
           </div>
         </div>
       )}

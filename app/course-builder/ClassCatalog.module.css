@@ -29,10 +29,103 @@
 .list {
   list-style: none;
   flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .empty {
   padding: 2rem;
   text-align: center;
   color: #999;
+}
+
+.sections {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.folder {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.folderHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: #fafafa;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.folderHeader:hover {
+  background: #fde8f4;
+}
+
+.folderIcon {
+  font-size: 0.8rem;
+  color: #D73186;
+  width: 0.9rem;
+  flex-shrink: 0;
+}
+
+.folderLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  flex: 1;
+}
+
+.folderCount {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #fff;
+  background: #D73186;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.folderList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.separator {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 0.25rem 1rem;
+}
+
+.quizFooter {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #e5e5e5;
+  background: #fff;
+  position: sticky;
+  bottom: 0;
+}
+
+.quizBtn {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: #fff;
+  color: #D73186;
+  border: 1.5px solid #D73186;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.quizBtn:hover {
+  background: #fde8f4;
 }

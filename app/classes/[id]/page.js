@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import useCourseBuilderStore from '../../../store/courseBuilderStore'
-import { getClass } from '../../../lib/api'
+import { fetchClassById } from '../../../lib/sanity'
 import styles from './class-detail.module.css'
 
 const RESOURCE_LABELS = {
@@ -28,7 +28,7 @@ export default function ClassDetailPage() {
   const isAdded = selectedClasses.some((c) => c.id === id)
 
   useEffect(() => {
-    getClass(id).then((data) => {
+    fetchClassById(id).then((data) => {
       setClass(data)
       setLoading(false)
     })

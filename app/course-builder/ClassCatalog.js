@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation'
 import ClassItem from './ClassItem'
 import useCourseBuilderStore from '../../store/courseBuilderStore'
 import useQuizStore from '../../store/quizStore'
+import useCatalogStore from '../../store/catalogStore'
 import styles from './ClassCatalog.module.css'
-import { getClasses } from '../../lib/api'
 
 function Folder({ label, color, classes, defaultOpen }) {
   const [open, setOpen] = useState(defaultOpen)
@@ -30,12 +30,17 @@ function Folder({ label, color, classes, defaultOpen }) {
   )
 }
 
+function withMatchPct(class_, tagNames) {
+  const classTagNames = new Set((class_.tags || []).map((t) => t.name))
+  const matches = tagNames.filter((t) => classTagNames.has(t)).length
+  return { ...class_, match_pct: Math.round((matches / tagNames.length) * 100) }
+}
+
 export default function ClassCatalog() {
-  const [allClasses, setAllClasses] = useState([])
-  const [suggested, setSuggested] = useState([])
   const [search, setSearch] = useState('')
   const { selectedClasses } = useCourseBuilderStore()
   const { matchedTags, resourceType, reset: resetQuiz } = useQuizStore()
+  const { classes: allClasses, loaded, load } = useCatalogStore()
   const router = useRouter()
 
   function retakeQuiz() {
@@ -43,15 +48,15 @@ export default function ClassCatalog() {
     router.push('/quiz')
   }
 
-  useEffect(() => {
-    const fetches = [getClasses()]
-    if (matchedTags.length) fetches.push(getClasses(matchedTags, resourceType))
-    else fetches.push(Promise.resolve([]))
-    Promise.all(fetches).then(([all, sugg]) => {
-      setAllClasses(all)
-      setSuggested(sugg)
-    })
-  }, [matchedTags, resourceType])
+  useEffect(() => { load() }, [])
+
+  const suggested = matchedTags.length
+    ? allClasses
+        .map((c) => withMatchPct(c, matchedTags))
+        .filter((c) => c.match_pct > 0 && (!resourceType || c.resources === resourceType))
+    : []
+
+  if (!loaded) return <div className={styles.empty}>Cargando clases…</div>
 
   const notSelected = (list) => list.filter((c) => !selectedClasses.some((s) => s.id === c._id))
   const suggestedIds = new Set(suggested.map((c) => c._id))

@@ -2,14 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { getTeacherCourse } from '../../../lib/api'
+import useCatalogStore from '../../../store/catalogStore'
 import styles from './course-detail.module.css'
-
-function toPlainText(value) {
-  if (!value) return ''
-  if (typeof value === 'string') return value
-  if (!Array.isArray(value)) return ''
-  return value.map((b) => b.children?.map((c) => c.text).join('') ?? '').join(' ')
-}
 
 const RESOURCE_LABELS = {
   sin_tecnologia:      'Sin tecnología',
@@ -23,15 +17,13 @@ export default function CourseDetailPage() {
   const [course, setCourse] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { classes: allClasses, load } = useCatalogStore()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    if (!token) {
-      router.push('/login')
-      return
-    }
-    getTeacherCourse(id)
-      .then(setCourse)
+    if (!token) { router.push('/login'); return }
+    Promise.all([getTeacherCourse(id), load()])
+      .then(([data]) => setCourse(data))
       .catch(() => setError('No se pudo cargar el curso.'))
       .finally(() => setLoading(false))
   }, [id, router])
@@ -39,6 +31,9 @@ export default function CourseDetailPage() {
   if (loading) return <div className={styles.loading}>Cargando curso…</div>
   if (error)   return <div className={styles.error}>{error}</div>
   if (!course) return null
+
+  const classMap = Object.fromEntries(allClasses.map((c) => [c._id, c]))
+  const classes = (course.class_ids || []).map((cid) => classMap[cid]).filter(Boolean)
 
   return (
     <div className={styles.page}>
@@ -52,13 +47,13 @@ export default function CourseDetailPage() {
           <p className={styles.description}>{course.description}</p>
         )}
         <div className={styles.meta}>
-          <span className={styles.count}>{course.classes?.length ?? 0} clases</span>
+          <span className={styles.count}>{classes.length} clases</span>
         </div>
       </div>
 
-      {course.classes?.length > 0 ? (
+      {classes.length > 0 ? (
         <ol className={styles.list}>
-          {course.classes.map((cls, i) => (
+          {classes.map((cls, i) => (
             <li
               key={cls._id ?? i}
               className={styles.card}
@@ -69,7 +64,7 @@ export default function CourseDetailPage() {
               <div className={styles.cardBody}>
                 <h2 className={styles.classTitle}>{cls.title}</h2>
                 {cls.description && (
-                  <p className={styles.classDesc}>{toPlainText(cls.description)}</p>
+                  <p className={styles.classDesc}>{cls.description}</p>
                 )}
                 <div className={styles.badges}>
                   {cls.duration_minutes && (
